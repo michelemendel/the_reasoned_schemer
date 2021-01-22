@@ -1,4 +1,4 @@
-(ns the-reasoned-schemer.core
+(ns the-reasoned-schemer.chapter1
   (:require [clojure.core.logic :refer :all]))
 
 (run* [q]
