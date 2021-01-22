@@ -1,36 +1,42 @@
 (ns the-reasoned-schemer.chapter1
   (:require [clojure.core.logic :refer :all]))
 
-(run* [q]
-      (== q true))
-
 ;;1.Playthings
 
+;;7
 (run* [q]
       u#)
 
+;;10
 (run* [q]
       (== 'pea 'pod))
 
+;;11
 (run* [q]
       (== q 'pea))
 
+;;14,15
 (run* [q]
       (== 'pea q))
 
+;;16,17
 (run* [q]
       s#)
 
+;;19
 (run* [q]
       (== 'pea 'pea))
 
+;;20
 (run* [q]
       (== q q))
 
+;;21
 (run* [q]
       (fresh (x)
              (== 'pea q)))
 
+;;24
 (run* [q]
       (fresh (x)
              (== 'pea x)))
@@ -40,11 +46,11 @@
 ;;25
 (run* [q]
       (fresh (x)
-             (== (lcons x '()) q)))
+             (== (lcons x ()) q)))
 
 ;;`(,x) is shorthand for (cons x '())
 ;;notice the different syntax in core.logic
-;;(list ,x) = (list x) = (lcons x '())
+;;(list ,x) = (list x) = (lcons x ())
 ;;26
 (run* [q]
       (fresh (x)
@@ -61,14 +67,18 @@
       (== '(((pea)) pod)
           (lcons '((pea)) q)))
 
-;;33
 (run* [q]
       (== '(((pea)) pod)
           (llist '((pea)) q)))
 
 ;;34
+;;`(((,q)) pod) '(((pea)) pod))
 (run* [q]
-      (== (lcons (list (lcons q '())) 'pod)
+      (== (list (list (list q)) 'pod)
+          '(((pea)) pod)))
+
+(run* [q]
+      (== (list (lcons (lcons q '()) '()) 'pod)
           '(((pea)) pod)))
 
 

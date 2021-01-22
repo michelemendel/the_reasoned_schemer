@@ -1,10 +1,11 @@
-# the_reasoned_schemer
+# The Reasoned Schemer in Clojure core.logic
 
-A Clojure library designed to ... well, that part is up to you.
+See also
+- https://github.com/martintrojer/reasoned-schemer-core.logic
+- https://github.com/philoskim/reasoned-schemer-for-clojure
 
-## Usage
 
-FIXME
+
 
 ## License
 
