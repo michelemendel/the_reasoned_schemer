@@ -5,11 +5,24 @@ See also
 - https://github.com/philoskim/reasoned-schemer-for-clojure
 
 
+### Every variable is initially fresh. 
+A variable is no longer fresh if it becomes associated with a 
+non-variable value or if it becomes associated with a variable 
+that, itself, is no longer fresh.
+
+
+### The First Law of ≡
+(≡ v w) can be replaced by (≡ w v).
+
+
+### The Second Law of ≡
+If x is fresh, then (≡ v x) succeeds and associates v with x, unless x occurs in v.
+
 
 
 ## License
 
-Copyright © 2021 FIXME
+Copyright © 2021 Mendel
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at
