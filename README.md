@@ -1,4 +1,5 @@
-# The Reasoned Schemer in Clojure core.logic
+# The Reasoned Schemer (second edition) in Clojure core.logic
+
 
 See also
 - https://github.com/martintrojer/reasoned-schemer-core.logic
@@ -17,6 +18,9 @@ that, itself, is no longer fresh.
 
 ### The Second Law of ≡
 If x is fresh, then (≡ v x) succeeds and associates v with x, unless x occurs in v.
+
+### The Law of conde 
+Every successful conde line contributes one or more values.
 
 
 
