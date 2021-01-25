@@ -1,5 +1,7 @@
 # The Reasoned Schemer (second edition) in Clojure core.logic
 
+- https://github.com/clojure/core.logic
+- https://clojuredocs.org/clojure.core.logic
 
 See also
 - https://github.com/martintrojer/reasoned-schemer-core.logic
@@ -24,12 +26,14 @@ Every successful conde line contributes one or more values.
 
 
 ### TRC vs core.logic
-- `#s s#`
-- `#u u#`
-- `caro firsto`
-- `cdro resto`
-- `(,a) (list a) or [a]
-- cons lcons
+|TRC         |core.logic  |
+|------------|------------|
+| #s         | s#         |
+| #u         | u#         |
+| caro       | firsto     |
+| cdro       | resto      |
+| `(,a)  (note: without the backslash)    | (list a) or [a] |
+| cons       | lcons      |
 
 
 ## License
