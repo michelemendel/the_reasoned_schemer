@@ -34,5 +34,18 @@ Every successful conde line contributes one or more values.
 | cdro            | resto           |
 | `(,a)           | (list a) or [a] |
 | cons            | lcons           |
+| null?           | empty?          |
+| nullo           | emptyo          |
+| pair?           | se fn below     |
 
+
+```clojure
+(defn pair? [x]
+  (or (lcons? x) (and (coll? x) (seq x))))
+```
+```clojure
+(defn pairo [p]
+  (fresh [a d]
+         (conso a d p)))
+```
 

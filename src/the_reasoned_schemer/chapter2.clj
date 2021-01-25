@@ -177,15 +177,137 @@
     (firsto d y)
     (== :o y)))
 
+;;The first part without the second
 (run* [l] ;(:b _0 :n :u :s)
   (fresh [t w]
     (== [w :n :u :s] t) ;(_0 :n :u :s)
-    (resto l t) ;(_0 . _1)
-    (firsto l :b))) ;(:b . _0)
+    (resto l t) ;(_0 . _1) -> (_0 _1 :n :u :s)
+    (firsto l :b))) ;(:b . _0) -> (b _1 :n :u :s)
 
-(run* [l] ;(_0 :o . _1)
-  (fresh [d]
-    (resto l d) ;(_0 . _1)
+;;The second part without the first
+(run* [l] ;(_0 :o :n :u :s)
+  (fresh [d y w]
+    (== l [y w :n :u :s]) ;(_0 _1 :n :u :s)
+    (resto l d) ;(_0 . _1) -> (_0 :o . _1) -> (_0 :o :n :u :s)
     (firsto d :o))) ;(:o . _0)
+
+;;All together now
+(run* [l] ;(:b :o :n :u :s)
+  (fresh [first second y w]
+    (== first [:b w :n :u :s]) ;(:b _1 :n :u :s)
+    (== second [y :o :n :u :s]) ;(_2 :0 :n :u :s)
+    (== l first)
+    (== l second)))
+
+;;28
+(empty? '(grape raisin pear))
+
+;;29
+(empty? '())
+
+;;30
+(run* [q]
+  (emptyo '(grape raisin pear)))
+
+;;31
+(run* [q]
+  (emptyo '()))
+
+;;32
+(run* [x]
+  (emptyo x))
+
+;;33
+(defn nullo [x]
+  (== '() x))
+;;usage
+(run* [q] (nullo '()))
+(run* [q] (nullo '(a)))
+
+;;34, 35
+;;pairs - sequences with improper tails (i.e. it could be a logic variable instead of a list)
+;; (a . b)
+;;From https://github.com/clojure/core.logic/wiki/Differences-from-The-Reasoned-Schemer
+(defn pair? [x]
+  (or (lcons? x) (and (coll? x) (seq x))))
+
+;;36
+(pair? (llist '(split) 'pea))
+
+;;36
+(pair? (llist '(split) 'pea))
+
+;;37
+;;nil, not false
+(pair? '())
+
+;;40
+;;(pear), not true
+(pair? '(pear))
+
+;;41
+(first '(pear))
+
+;;42
+(rest '(pear))
+
+;;43
+;;cons the magnificent
+
+;;44
+(cons 'split '(pea))
+(pair? (cons 'split '(pea)))
+
+;;45
+(run* [r]
+  (fresh [x y]
+    (== (lcons x (lcons y 'salad)) r)))
+
+;;46
+(defn pairo [p]
+  (fresh [a d]
+    (conso a d p)))
+
+;;47
+(run* [q]
+  (pairo (lcons q q)))
+
+;;(lcons q q) is (_0 . _0)
+(run* [l]
+  (fresh [q]
+    (== l (lcons q q))))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
