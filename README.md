@@ -26,14 +26,14 @@ Every successful conde line contributes one or more values.
 
 
 ### TRC vs core.logic
-|TRC         |core.logic  |
-|------------|------------|
-| #s         | s#         |
-| #u         | u#         |
-| caro       | firsto     |
-| cdro       | resto      |
-| `(,a)  (note: without the backslash)    | (list a) or [a] |
-| cons       | lcons      |
+|TRC              |core.logic       |
+|-----------------|-----------------|
+| #s              | s#              |
+| #u              | u#              |
+| caro            | firsto          |
+| cdro            | resto           |
+| `(,a)           | (list a) or [a] |
+| cons            | lcons           |
 
 
 ## License
