@@ -57,7 +57,7 @@ Thanks to @rickmoynihan (slack)
 
 Both editions of TRS include a complete implementation in the final chapters / appendix.  The implementation in the 1st edition is minikanren, and in the 2nd edition - as I understand - is microkanren).
 
-If you want to use the book to understand core.logic’s implementation (rather than the high level language) then these are important differences.
+If you want to use the book to understand core.logic’s implementation (rather than the high level language) then these are notable differences.
 If you want to understand logic programming in the abstract; there’s mainly just superficial differences you can gloss over.
 
 There are also some differences at the language level. They’re easy to find the equivalence for.  See pages xv and xvi in TRS2.
