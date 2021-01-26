@@ -49,7 +49,7 @@ Every successful conde line contributes one or more values.
          (conso a d p)))
 ```
 
-### A note about the difference between the first and second edition of The Reasoned Schemer
+### A note about the difference between the first and second edition of The Reasoned Schemer, and it's relation to core.logic
 
 Thanks to @rickmoynihan (slack)
 
@@ -60,3 +60,7 @@ Both editions of TRS include a complete implementation in the final chapters / a
 If you want to use the book to understand core.logic’s implementation (rather than the high level language) then these are important differences.
 If you want to understand logic programming in the abstract; there’s mainly just superficial differences you can gloss over.
 
+There's also some differences at the language level; they’re just pretty easy to find the equivalence for.  See pages xv and xvi in TRS2.
+
+Also, see this conversation between Rick and William Byrd
+https://groups.google.com/g/minikanren/c/fMKSBmOm_XM/m/V0K30F8lBwAJ
