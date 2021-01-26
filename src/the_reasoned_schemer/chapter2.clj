@@ -225,21 +225,29 @@
 (run* [q] (nullo '(a)))
 
 ;;34, 35
-;;pairs - sequences with improper tails (i.e. it could be a logic variable instead of a list)
-;; (a . b)
+;;pairs - (a . b)
 ;;From https://github.com/clojure/core.logic/wiki/Differences-from-The-Reasoned-Schemer
+;;Slightly modified to return a boolean
 (defn pair? [x]
-  (or (lcons? x) (and (coll? x) (seq x))))
+  (or (lcons? x)
+      (and (coll? x)
+           (boolean (seq x)))))
 
-;;36
-(pair? (llist '(split) 'pea))
+;;Why is a list larger than 2 a pair?
+(pair? '(a b c)) ;-> true
+(lcons? (lcons '1 \s)) ;-> true
+(lcons? (lcons '(1) \s)) ;-> true
+(lcons? (lcons '(1 2) \s)) ;-> true
 
 ;;36
 (pair? (llist '(split) 'pea))
 
 ;;37
-;;nil, not false
 (pair? '())
+
+;;38,39
+(pair? 'pair)
+(pair? 'pear)
 
 ;;40
 ;;(pear), not true
@@ -277,14 +285,52 @@
   (fresh [q]
     (== l (lcons q q))))
 
+;;48
+(run* [q]
+  (pairo '()))
 
+;;49
+(run* [q]
+  (pairo 'pair))
 
+;;50
+(run* [x]
+  (pairo x))
 
+;;51
+(run* [r]
+  (pairo (lcons r '())))
 
+;;(lcons r '()) is ((_0))
+(run* [l]
+  (fresh [r]
+    (== l (lcons r '()))))
 
+;;52-57
+;;singleton - a list of a single value
 
+;;58
+(defn singleton? [l]
+  (cond
+    (pair? l) (empty? (rest l))
+    :else false))
 
+(singleton? '((a) (b) (c)))
 
+;;60
+(singleton? '())
+
+;;61
+(singleton? (cons 'pea '()))
+
+;;62
+(singleton? '(sauerkraut))
+
+;;64-68
+(defn singletono [l]
+  (fresh [d]
+    (resto l d)
+    (emptyo d)))
 
 
 
