@@ -37,8 +37,10 @@ A variable is no longer fresh if it becomes associated with a
 non-variable value or if it becomes associated with a variable
 that, itself, is no longer fresh.
 
-### pair (a . b)
-A sequences with an improper tail
+### pair
+A sequences with an improper tail.
+
+*Note* In Lisp this is what's called a cell, i.e. (a . b). This means that a pair is not something of only two items. see https://en.wikipedia.org/wiki/Cons
 
 ### improper tail
 A tail is a logic variable instead of a list

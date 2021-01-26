@@ -225,19 +225,13 @@
 (run* [q] (nullo '(a)))
 
 ;;34, 35
-;;pairs - (a . b)
+;;pairs - (a . b), i.e. a cons cell from Lisp
 ;;From https://github.com/clojure/core.logic/wiki/Differences-from-The-Reasoned-Schemer
 ;;Slightly modified to return a boolean
 (defn pair? [x]
   (or (lcons? x)
       (and (coll? x)
            (boolean (seq x)))))
-
-;;Why is a list larger than 2 a pair?
-(pair? '(a b c)) ;-> true
-(lcons? (lcons '1 \s)) ;-> true
-(lcons? (lcons '(1) \s)) ;-> true
-(lcons? (lcons '(1 2) \s)) ;-> true
 
 ;;36
 (pair? (llist '(split) 'pea))
