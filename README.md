@@ -60,7 +60,7 @@ A sequences with an improper tail.
 *Note* In Lisp this is what's called a cell, i.e. (a . b). This means that a pair is not something of only two items. see https://en.wikipedia.org/wiki/Cons
 
 ### improper tail
-A tail is a logic variable instead of a list
+The tail is a logic variable instead of a list
 
 ### singleton
 The fn singleton? (see below) determines if its argument is a proper list of length one. 
@@ -81,29 +81,8 @@ A list is proper if it is the empty list or if it is a pair whose cdr is proper.
 | cons            | lcons           |
 | null?           | empty?          |
 | nullo           | emptyo          | With a fresh variable q emptyo succeeds, since q will be ()
-| pair?           | se fn below     |
+| pair?           | se utils.clj    |
 | list?           | seq?            | 1.proper lists, 2.For explanation, see https://github.com/clojure/core.logic/wiki/Differences-from-The-Reasoned-Schemer
- 
-
----
-## Extra functions
-
-```clojure
-(defn pair? [x]
-  (or (lcons? x) (and (coll? x) (seq x))))
-```
-```clojure
-(defn pairo [p]
-  (fresh [a d]
-         (conso a d p)))
-```
-```clojure
-(defn singleton? [l]
-  (cond
-    (pair? l) (empty? (rest l))
-    :else false))
-
-```
 
 
 ---
