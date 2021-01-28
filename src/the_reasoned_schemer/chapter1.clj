@@ -1,4 +1,5 @@
 (ns the-reasoned-schemer.chapter1
+  (:refer-clojure :exclude [==])
   (:require [clojure.core.logic :refer :all]))
 
 ;;1.Playthings

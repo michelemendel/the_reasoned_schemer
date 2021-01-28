@@ -1,4 +1,8 @@
-# The Reasoned Schemer (second edition) in Clojure core.logic
+# The Reasoned Schemer in Clojure core.logic
+
+*The Reasoned Schemer, second edition  
+Friedman, Daniel P.; Byrd, William E.; Kiselyov, Oleg; Hemann, Jason.*
+
 
 - [The Reasoned Schemer 2ndEd at Github](https://github.com/TheReasonedSchemer2ndEd)
   - [code from the book](https://github.com/TheReasonedSchemer2ndEd/CodeFromTheReasonedSchemer2ndEd)
@@ -12,10 +16,12 @@ See also implementations in core.logic of TRS 1st edition
 MicroKanren
 - [µKanren: A Minimal Functional Core
   for Relational Programming](http://webyrd.net/scheme-2013/papers/HemannMuKanren2013.pdf)
+- [Relational Programming in miniKanren: Techniques, Applications, and Implementations](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.363.5478&rep=rep1&type=pdf)
+- [First-order miniKanren representation: Great for tooling and search](http://minikanren.org/workshop/2019/minikanren19-final2.pdf)
 - [Implementation in Sceme](https://github.com/jasonhemann/microKanren)
 
 ---
-## The Laws 
+## The Laws from the book
 
 ### The First Law of ≡
 (≡ v w) can be replaced by (≡ w v).
@@ -29,8 +35,19 @@ Every successful conde line contributes one or more values.
 ### The Law of #u 
 Any conde line that has #u as a top-level goal cannot contribute values.
 
+### The Law of #s 
+Any top-level #s can be removed from a conde line.
+
+
 ---
 ## Definitions and concepts
+
+### logic variables
+- Are being created of the arguments in the run and fresh functions (aka goal constructor)
+  - The arguments in the run function will be the output
+- Can also be created with `lvar`
+- Can be unified (bound) to a concrete value or reified to a value like _0
+
 
 ### Every variable is initially fresh
 A variable is no longer fresh if it becomes associated with a
@@ -54,8 +71,8 @@ A list is proper if it is the empty list or if it is a pair whose cdr is proper.
 
 ---
 ### TRC vs core.logic
-|TRC              |core.logic       |
-|-----------------|-----------------|
+|TRC              |core.logic       |comment
+|-----------------|-----------------|-------|
 | #s              | s#              |
 | #u              | u#              |
 | caro            | firsto          |
@@ -65,7 +82,8 @@ A list is proper if it is the empty list or if it is a pair whose cdr is proper.
 | null?           | empty?          |
 | nullo           | emptyo          |
 | pair?           | se fn below     |
-| list?           | seq?            |
+| list?           | seq?            | 1.proper lists, 2.For explanation, see https://github.com/clojure/core.logic/wiki/Differences-from-The-Reasoned-Schemer
+ 
 
 ---
 ## Extra functions
