@@ -18,16 +18,16 @@ MicroKanren
   for Relational Programming](http://webyrd.net/scheme-2013/papers/HemannMuKanren2013.pdf)
 - [Relational Programming in miniKanren: Techniques, Applications, and Implementations](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.363.5478&rep=rep1&type=pdf)
 - [First-order miniKanren representation: Great for tooling and search](http://minikanren.org/workshop/2019/minikanren19-final2.pdf)
-- [Implementation in Sceme](https://github.com/jasonhemann/microKanren)
+- [Implementation in Scheme](https://github.com/jasonhemann/microKanren)
 
 ---
 ## The Laws from the book
 
-### The First Law of ≡
-(≡ v w) can be replaced by (≡ w v).
+### The First Law of ==
+(== v w) can be replaced by (≡ w v).
 
-### The Second Law of ≡
-If x is fresh, then (≡ v x) succeeds and associates v with x, unless x occurs in v.
+### The Second Law of ==
+If x is fresh, then (== v x) succeeds and associates v with x, unless x occurs in v.
 
 ### The Law of conde 
 Every successful conde line contributes one or more values.
@@ -80,7 +80,7 @@ A list is proper if it is the empty list or if it is a pair whose cdr is proper.
 | `(,a)           | (list a) or [a] |
 | cons            | lcons           |
 | null?           | empty?          |
-| nullo           | emptyo          |
+| nullo           | emptyo          | With a fresh variable q emptyo succeeds, since q will be ()
 | pair?           | se fn below     |
 | list?           | seq?            | 1.proper lists, 2.For explanation, see https://github.com/clojure/core.logic/wiki/Differences-from-The-Reasoned-Schemer
  

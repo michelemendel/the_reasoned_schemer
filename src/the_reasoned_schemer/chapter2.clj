@@ -224,6 +224,7 @@
 ;;usage
 (run* [q] (nullo '()))
 (run* [q] (nullo '(a)))
+(run* [q] (nullo q))
 
 ;;34, 35
 ;;pairs - (a . b), i.e. a cons cell from Lisp

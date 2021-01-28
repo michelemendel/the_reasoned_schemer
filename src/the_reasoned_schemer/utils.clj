@@ -23,3 +23,13 @@
      (fresh (d)
        (resto l d)
        (listo d)))))
+
+(defn lolo [l]
+  (conde
+    [(emptyo l)]
+    [(fresh [a]
+       (firsto l a)
+       (listo a))
+     (fresh [b]
+       (resto l b)
+       (lolo b))]))
