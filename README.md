@@ -81,7 +81,7 @@ A list is proper if it is the empty list or if it is a pair whose cdr is proper.
 | cons            | lcons           |
 | null?           | empty?          |
 | nullo           | emptyo          | With a fresh variable q emptyo succeeds, since q will be ()
-| pair?           | se utils.clj    |
+| pair?           | pair?           | se utils.clj
 | list?           | seq?            | 1.proper lists, 2.For explanation, see https://github.com/clojure/core.logic/wiki/Differences-from-The-Reasoned-Schemer
 
 
