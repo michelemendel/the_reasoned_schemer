@@ -63,11 +63,11 @@ A sequences with an improper tail.
 The tail is a logic variable instead of a list
 
 ### singleton
-The fn singleton? (see below) determines if its argument is a proper list of length one. 
+The fn singleton? (see utils.clj) determines if its argument is a proper list of length one. 
 
 ### a proper list
 A list is proper if it is the empty list or if it is a pair whose cdr is proper.
-
+(llist ...) is not a proper list
 
 ---
 ### TRC vs core.logic

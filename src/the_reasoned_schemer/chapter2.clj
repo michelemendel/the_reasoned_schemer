@@ -12,11 +12,11 @@
 
 ;;3
 (run* [q]
-  (firsto '(a c o r n ) q))
+  (firsto '(a c o r n) q))
 
 ;;4
 (run* [q]
-  (firsto '(a c o r n ) 'a))
+  (firsto '(a c o r n) 'a))
 
 ;;5
 (run* [r]
