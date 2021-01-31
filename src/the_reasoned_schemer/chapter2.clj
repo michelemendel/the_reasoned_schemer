@@ -53,7 +53,7 @@
 
 ;;8
 ;;Note the use of lcons instead of cons as in the book
-;;lcons has to be used, since the 2nd argument is not necessarily a proper tail, but could be a logic variable.
+;;lcons has to be used, since the 2nd argument is not necessarily a proper tail (it could be a logic variable).
 (run* [r]
   (fresh [x y]
     (firsto '(grape raisin pear) x)
@@ -226,7 +226,7 @@
 (run* [q] (nullo '(a)))
 (run* [q] (nullo q))
 
-;;34, 35
+;;34
 ;;pairs - (a . b), i.e. a cons cell from Lisp
 ;;From https://github.com/clojure/core.logic/wiki/Differences-from-The-Reasoned-Schemer
 ;;Slightly modified to return a boolean
@@ -234,6 +234,11 @@
   (or (lcons? x)
       (and (coll? x)
            (boolean (seq x)))))
+
+(pair? (llist 'split 'pea))
+
+;;35
+(pair? (llist 'split (lvar 'x)))
 
 ;;36
 (pair? (llist '(split) 'pea))
@@ -246,7 +251,6 @@
 (pair? 'pear)
 
 ;;40
-;;(pear), not true
 (pair? '(pear))
 
 ;;41

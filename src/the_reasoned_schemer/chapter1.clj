@@ -49,7 +49,7 @@
   (fresh [x]
     (== (lcons x ()) q)))
 
-;;`(,x) is shorthand for (cons x '())
+;;`(,x) is shorthand for (cons x '()) or (llist x)
 ;;notice the different syntax in core.logic
 ;;(list ,x) = (list x) = (lcons x ())
 ;;26
@@ -296,7 +296,7 @@
 ;;79-81 - Here the book removes conj2, which makes the syntax similar to the examples above.
 
 ;;82
-;;No defrel macro in core.logic
+;;No defrel macro in core.logic, but we'll use a regular defn instead.
 (defn teacupo [t]
   (conde [(== 'tea t)]
          [(== 'cup t)]))

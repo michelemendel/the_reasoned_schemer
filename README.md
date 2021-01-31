@@ -84,6 +84,16 @@ A list is proper if it is the empty list or if it is a pair whose cdr is proper.
 | pair?           | pair?           | se utils.clj
 | list?           | seq?            | 1.proper lists, 2.For explanation, see https://github.com/clojure/core.logic/wiki/Differences-from-The-Reasoned-Schemer
 
+### Discrepancies and notable issues
+- 1.67-70 - A difficulty
+- 1.
+- 1.55 - A question
+- 2.25
+- 3.41 - Order of clauses changes the result
+- 3.42
+- 3.43
+
+
 
 ---
 ### A note about the difference between the first and second edition of TRS, and it's relation to core.logic
