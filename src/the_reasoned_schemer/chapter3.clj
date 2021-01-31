@@ -253,34 +253,51 @@
 (run* [x y]
   (membero 'e (list 'pasta x 'fagioli y)))
 
+;;63
+(run* [q]
+  (fresh [x y]
+    (== (list 'pasta x 'fagioli y) q)
+    (membero 'e q)))
 
+;;64
+(run 1 [l]
+  (membero 'tofu l))
 
+;;65
+;;-
 
+;;66
+;;Never finishes, since there are infinite lists that answer to this query
+#_(run* [l]
+  (membero 'tofu l))
 
+;;67
+(run 5 [l]
+    (membero 'tofu l))
 
+;;68-72
+;;about proper lists and membero
 
+;;73
+#_(defn proper-membero [x l]
+  (conde
+    [(firsto l x)
+     (fresh [d]
+       (resto l d)
+       (listo d))]
+    [(fresh [d]
+       (resto l d)
+       (proper-membero x d))]))
 
+;;74
+(run 12 [l]
+  (proper-membero 'tofu l))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+;;75
+(defn proper-member?
+  [x l]
+  (cond
+    (empty? l) false
+    (= (first l) x) (seq? (rest l))
+    :else (proper-member? x (rest l))))
 

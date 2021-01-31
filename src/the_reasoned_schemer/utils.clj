@@ -51,3 +51,12 @@
        (resto l b)
        (lolo b))]))
 
+(defn proper-membero [x l]
+  (conde
+    [(firsto l x)
+     (fresh [d]
+       (resto l d)
+       (listo d))]
+    [(fresh [d]
+       (resto l d)
+       (proper-membero x d))]))
