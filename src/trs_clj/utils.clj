@@ -1,4 +1,4 @@
-(ns the-reasoned-schemer.utils
+(ns trs-clj.utils
   (:refer-clojure :exclude [==])
   (:require [clojure.core.logic :refer :all]))
 

@@ -1,7 +1,7 @@
-(ns the-reasoned-schemer.chapter3
+(ns trs-clj.chapter3
   (:refer-clojure :exclude [==])
   (:require [clojure.core.logic :refer :all]
-            [the-reasoned-schemer.utils :refer :all]))
+            [trs-clj.utils :refer :all]))
 
 ;;3.Seeing Old Friends in New Ways
 

@@ -1,7 +1,7 @@
-(ns the-reasoned-schemer.chapter4
+(ns trs-clj.chapter4
   (:refer-clojure :exclude [==])
   (:require [clojure.core.logic :refer :all]
-            [the-reasoned-schemer.utils :refer :all]))
+            [trs-clj.utils :refer :all]))
 
 ;;4.Double Your Fun
 
@@ -22,7 +22,7 @@
 (append '() '(d e))
 
 ;;4
-(append 'a '(d e))
+;;(append 'a '(d e))
 
 ;;5-7
 (append '(d e) 'a)
@@ -118,6 +118,8 @@
   (fresh [z]
     (appendo '(cake & ice cream) (llist 'd 't z) x)))
 ;;((cake & ice cream d t . _0))
+
+
 
 
 
