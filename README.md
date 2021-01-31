@@ -13,7 +13,7 @@ See also implementations in core.logic of TRS 1st edition
 - https://github.com/martintrojer/reasoned-schemer-core.logic
 - https://github.com/philoskim/reasoned-schemer-for-clojure
 
-MicroKanren
+Mini/MicroKanren
 - [µKanren: A Minimal Functional Core
   for Relational Programming](http://webyrd.net/scheme-2013/papers/HemannMuKanren2013.pdf)
 - [Relational Programming in miniKanren: Techniques, Applications, and Implementations](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.363.5478&rep=rep1&type=pdf)
@@ -86,7 +86,6 @@ A list is proper if it is the empty list or if it is a pair whose cdr is proper.
 
 ### Discrepancies and notable issues
 - 1.67-70 - A difficulty
-- 1.
 - 1.55 - A question
 - 2.25
 - 3.41 - Order of clauses changes the result
