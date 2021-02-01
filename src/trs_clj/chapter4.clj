@@ -119,23 +119,81 @@
     (appendo '(cake & ice cream) (llist 'd 't z) x)))
 ;;((cake & ice cream d t . _0))
 
+;;33,34
+(run 6 [x]
+  (fresh [y]
+    (appendo x y '(cake & ice d t))))
 
+;;35,36
+(run 6 [y]
+  (fresh [x]
+    (appendo x y '(cake & ice d t))))
 
+;;37,38
+(run 6 [x y]
+  (appendo x y '(cake & ice d t)))
 
+;;39-42
+;;Differs from the book. Here the value is actually the same as frame 37.
+(run 7 [x y]
+  (appendo x y '(cake & ice d t)))
 
+;;43,44
+;;swappendo
 
+;;45
+;;I'm using seq? instead of pair?, since seq is the abstractness that Clojure works with, while pair is what Scheme is using (the cons cell).
+(defn unwrap [x]
+  (cond
+    (seq? x) (unwrap (first x))
+    :else x))
 
+(unwrap '((((pizza)))))
 
+;;46
+(unwrap '((((pizza pie) with)) garlic))
 
+;;47
+#_(defn unwrapo [x out]
+  (conde
+    [(pairo x) (fresh [a]
+                 (firsto x a)
+                 (unwrapo a out))]
+    [(== out x)]))
 
+;;48,49
+(run* [x]
+  (unwrapo '(((pizza))) x))
 
+;;50
+(run 1 [x]
+  (unwrapo x 'pizza))
 
+;;51
+(run 1 [x]
+  (unwrapo [[x]] 'pizza))
 
+;;52
+(run 5 [x]
+  (unwrapo x 'pizza))
 
+;;53
+;;Except for the first value, the rest are not the same as the book.
+(run 5 [x]
+  (unwrapo x '((pizza))))
+;;(((pizza))
+;; (clojure.lang.LazySeq @309e4e91 . _0)
+;; ((clojure.lang.LazySeq @309e4e91 . _0) . _1)
+;; (((clojure.lang.LazySeq @309e4e91 . _0) . _1) . _2)
+;; ((((clojure.lang.LazySeq @309e4e91 . _0) . _1) . _2) . _3))
 
+;;54
+;;Except for the first value, the rest are not the same as the book.
+(run 5 [x]
+  (unwrapo [[x]] 'pizza))
 
-
-
+;;55
+;;Eating pizza
 
 
 

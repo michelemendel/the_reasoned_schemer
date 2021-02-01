@@ -21,7 +21,7 @@ Mini/MicroKanren
 - [Implementation in Scheme](https://github.com/jasonhemann/microKanren)
 
 ---
-## The Laws from the book
+## The Laws & Commandments from the book
 
 ### The First Law of ==
 (== v w) can be replaced by (≡ w v).
@@ -37,6 +37,13 @@ Any conde line that has #u as a top-level goal cannot contribute values.
 
 ### The Law of #s 
 Any top-level #s can be removed from a conde line.
+
+### The First Commandment 
+Within each sequence of goals, move non-recursive goals before recursive goals.  
+This is also mentioned by William Byrd in the video [miniKanren Philosophy - William Byrd & Daniel Friedman](https://www.youtube.com/watch?v=fHK-uS-Iedc&t=1069s).
+
+### The Law of Swapping conde Lines 
+Swapping two conde lines does not affect the values contributed by conde.
 
 
 ---
@@ -91,7 +98,8 @@ A list is proper if it is the empty list or if it is a pair whose cdr is proper.
 - 3.41 - Order of clauses changes the result
 - 3.42
 - 3.43
-
+- 4.39
+- 4.53
 
 
 ---

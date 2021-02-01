@@ -60,3 +60,10 @@
     [(fresh [d]
        (resto l d)
        (proper-membero x d))]))
+
+(defn unwrapo [x out]
+  (conde
+    [(pairo x) (fresh [a]
+                 (firsto x a)
+                 (unwrapo a out))]
+    [(== out x)]))
