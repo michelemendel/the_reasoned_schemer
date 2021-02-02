@@ -92,39 +92,41 @@
 (rember 'pea (list 'a 'b 'pea 'd 'pea 'e))
 
 ;;25
-;;There is a rembero in core.util
+;;There is a rembero in core.util, but it gives different result from rembero in TRS.
 
 ;;From TRS
-(defn rembero2 [x l out]
+#_(defn rembero2 [x l out]
   (conde
-    ((emptyo l) (== out []))
-    ((conso x out l))
-    ((fresh (a d res)
+    [(emptyo l) (== '() out)]
+    [(conso x out l)]
+    [(fresh (a d res)
        (conso a d l)
        (conso a res out)
-       (rembero x d res)))))
+       (rembero2 x d res))]))
 
 ;;26
 ;;Not the same result as TRS
 (run* [out]
-  (rembero 'pea '(pea) out))
-;;(())
-
-(run* [out]
   (rembero2 'pea '(pea) out))
+
+;;With core.logic/rembero we get a different result:
 ;;(())
 
 ;;27
 ;;Not the same result as TRS
 (run* [out]
-  (rembero 'pea '(pea pea) out))
+  (rembero2 'pea '(pea pea) out))
+
+;;With core.logic/rembero we get a different result:
 ;;((pea))
 
 ;;28-47
 ;;Not the same result as TRS
 (run* [out]
   (fresh [y z]
-    (rembero y (list 'a 'b y 'd z 'e) out)))
+    (rembero2 y (list 'a 'b y 'd z 'e) out)))
+
+;;With core.logic/rembero we get a different result:
 ;;((b a d _0 e)
 ;; (a b d _0 e)
 ;; ((a b d _0 e) :- (!= (_1 b)) (!= (_1 a)))
@@ -133,65 +135,26 @@
 ;;48-55
 ;;Not the same result as TRS
 (run* [y z]
-  (rembero y (list y 'd z 'e) (list y 'd 'e)))
+  (rembero2 y (list y 'd z 'e) (list y 'd 'e)))
+
+;;With core.logic/rembero we get a different result:
 ;;([d d])
 
 ;;56-60
 ;;Not the same result as TRS
 (run 4 [y z w out]
-  (rembero y (llist z w) out))
+  (rembero2 y (llist z w) out))
+
+;;With core.logic/rembero we get a different result:
 ;;([_0 _0 _1 _1]
 ;; ([_0 _1 (_0 . _2) (_1 . _2)] :- (!= (_1 _0)))
 ;; ([_0 _1 (_2 _0 . _3) (_1 _2 . _3)] :- (!= (_2 _0)) (!= (_1 _0)))
 ;; ([_0 _1 (_2 _3 _0 . _4) (_1 _2 _3 . _4)] :- (!= (_2 _0)) (!= (_1 _0)) (!= (_3 _0))))
 
 ;;61
-;;Not the same result as TRS
 (run 5 [y z w out]
-  (rembero y (llist z w) out))
+  (rembero2 y (llist z w) out))
+
+;;With core.logic/rembero we get a different result:
 ;;([_0 _1 (_2 _3 _4 _0 . _5) (_1 _2 _3 _4 . _5)]
 ;; :- (!= (_2 _0)) (!= (_1 _0)) (!= (_3 _0)) (!= (_4 _0)))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -300,4 +300,3 @@
     (empty? l) false
     (= (first l) x) (seq? (rest l))
     :else (proper-member? x (rest l))))
-

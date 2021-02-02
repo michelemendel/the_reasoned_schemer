@@ -67,3 +67,13 @@
                  (firsto x a)
                  (unwrapo a out))]
     [(== out x)]))
+
+;;There is a rembero in core.util, but it gives different result from rembero in TRS.
+(defn rembero2 [x l out]
+  (conde
+    [(emptyo l) (== '() out)]
+    [(conso x out l)]
+    [(fresh (a d res)
+       (conso a d l)
+       (conso a res out)
+       (rembero2 x d res))]))
