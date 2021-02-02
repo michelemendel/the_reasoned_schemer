@@ -100,6 +100,7 @@ A list is proper if it is the empty list or if it is a pair whose cdr is proper.
 - 3.43
 - 4.39
 - 4.53
+- 5.26-28,48,56,61 - rembero - There is something fundamentally different or wrong here. I have to read this chapter again.
 
 
 ---
