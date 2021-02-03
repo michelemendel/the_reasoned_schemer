@@ -6,10 +6,7 @@
 ;;6.The Fun Never Ends
 
 ;;1
-#_(defn alwayso []
-  (conde
-    [s#]
-    [(alwayso)]))
+;;See utils for the defn of alwayso
 
 (run 1 [q]
   (alwayso))
@@ -44,8 +41,8 @@
 ;;8
 ;;Never finishes
 #_(run 1 [q]
-  (alwayso)
-  u#)
+    (alwayso)
+    u#)
 
 ;;9
 (run 1 [q]
@@ -56,9 +53,9 @@
 ;;10
 ;;Never finishes
 #_(run 1 [q]
-  (== 'garlic q)
-  (alwayso)
-  (== 'onion q))
+    (== 'garlic q)
+    (alwayso)
+    (== 'onion q))
 
 ;;11
 (run 1 [q]
@@ -70,10 +67,10 @@
 ;;12
 ;;Never finishes
 #_(run 2 [q]
-  (conde
-    [(== 'garlic q) (alwayso)]
-    [(== 'onion q)])
-  (== 'onion q))
+    (conde
+      [(== 'garlic q) (alwayso)]
+      [(== 'onion q)])
+    (== 'onion q))
 
 ;;13
 (run 5 [q]
@@ -84,20 +81,16 @@
 
 ;;14,15
 ;;Neither succeeds nor fails
-#_(defn nevero []
-  (nevero))
+;;See utils for the defn nevero
 
-;;Blows the stack
-;;(nevero)
+(nevero)
 
 ;;16
-;;Blows the stack
+;;Never ends
 #_(run 1 [q]
-  (nevero))
+    (nevero))
 
 ;;17
-;;Not the same result as TRS
-;;This blows the stack
 (run 1 [q]
   u#
   (nevero))
@@ -109,41 +102,35 @@
     [(nevero)]))
 
 ;;19
-;;Not the same result as TRS
-;;This blows the stack
-#_(run 1 [q]
+(run 1 [q]
   (conde
     [(nevero)]
     [s#]))
 
 ;;20
-;;Blows the stack
+;;Never ends
 #_(run 2 [q]
-  (conde
-    [s#]
-    [(nevero)]))
+    (conde
+      [s#]
+      [(nevero)]))
 
 ;;21
-;;Blows the stack
+;;Never ends
 #_(run 1 [q]
-  (conde
-    [s#]
-    [(nevero)])
-  u#)
+    (conde
+      [s#]
+      [(nevero)])
+    u#)
 
 ;;22
-;;Not the same result as TRS
-;;This blows the stack
-#_(run 5 [q]
+(run 5 [q]
   (conde
     [(nevero)]
     [(alwayso)]
     [(nevero)]))
 
 ;;23
-;;Not the same result as TRS
-;;This blows the stack
-#_(run 6 [q]
+(run 6 [q]
   (conde
     [(== 'spicy q) (nevero)]
     [(== 'hot q) (nevero)]
@@ -160,14 +147,8 @@
     [(nevero)]))
 
 ;;25
-;;Not the same result as TRS
-;;This blows the stack
-#_(run 3 [q]
+(run 3 [q]
   (very-recursiveo))
-
-
-
-
 
 
 

@@ -78,13 +78,27 @@
        (conso a res out)
        (rembero2 x d res))]))
 
-(defn alwayso []
+#_(defn alwayso-bad []
   (conde
     [s#]
-    [(alwayso)]))
+    [(alwayso-bad)]))
+
+#_(defn nevero-bad []
+  (nevero-bad))
+
+(defn alwayso []
+  (fn [s]
+    (fn []
+      ((conde
+         [s#]
+         [(alwayso)])
+       s))))
 
 (defn nevero []
-  (nevero))
+  (fn [s]
+    (fn []
+      ((nevero)
+       s))))
 
 
 
