@@ -77,3 +77,18 @@
        (conso a d l)
        (conso a res out)
        (rembero2 x d res))]))
+
+(defn alwayso []
+  (conde
+    [s#]
+    [(alwayso)]))
+
+(defn nevero []
+  (nevero))
+
+
+
+
+
+
+
