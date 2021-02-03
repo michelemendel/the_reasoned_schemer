@@ -94,14 +94,14 @@ A list is proper if it is the empty list or if it is a pair whose cdr is proper.
 ### Discrepancies and notable issues
 - 1.67-70 - A difficulty
 - 1.55 - A question
-- 2.25
+- 2.25 - Different result than TRS
 - 3.41 - Order of clauses changes the result
-- 3.42
-- 3.43
-- 4.39
-- 4.53
+- 3.42 - Different result than TRS
+- 3.43 - Different result than TRS
+- 4.39 - Different result than TRS
+- 4.53 - Different result than TRS
 - 5.26-28,48,56,61 - Using core.util/rembero gives very different results. I have to read this chapter again.
-- 6.17,19,22,23,25
+- 6.17,19,22,23,25 - Different result than TRS
 
 ---
 ### A note about the difference between the first and second edition of TRS, and it's relation to core.logic

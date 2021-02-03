@@ -165,6 +165,7 @@
     (== (llist w (llist x y) z) r)))
 
 ;;42
+;;Different result than TRS
 (llist '(g)
        (llist 'e '(() (_0) ((_1) (_2))))
        (llist '(() (_0) ((_1) (_2))) '(() (_0) ((_1) (_2))))
@@ -176,6 +177,7 @@
 ;; ((_1) (_2)))
 
 ;;43
+;;Different result than TRS
 (run 3 [out]
   (fresh [w x y z]
     (== (llist '(g) (llist 'e w) (llist x y) z) out)
