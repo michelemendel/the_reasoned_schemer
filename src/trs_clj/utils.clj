@@ -100,6 +100,76 @@
       ((nevero)
        s))))
 
+(defn bit-xoro [x y r]
+  (conde
+    [(== 0 x) (== 0 y) (== 0 r)]
+    [(== 0 x) (== 1 y) (== 1 r)]
+    [(== 1 x) (== 0 y) (== 1 r)]
+    [(== 1 x) (== 1 y) (== 0 r)]))
+
+(defn bit-ando [x y r]
+  (conde
+    [(== 0 x) (== 0 y) (== 0 r)]
+    [(== 1 x) (== 0 y) (== 0 r)]
+    [(== 0 x) (== 1 y) (== 0 r)]
+    [(== 1 x) (== 1 y) (== 1 r)]))
+
+(defn half-addero [x y r c]
+  (all
+    (bit-xoro x y r)
+    (bit-ando x y c)))
+
+(defn full-addero [b x y r c]
+  (fresh [w xy wz]
+    (half-addero x y w xy)
+    (half-addero w b r wz)
+    (bit-xoro xy wz c)))
+
+(defn poso [n]
+  (fresh [a d]
+    (== (llist a d) n)))
+
+(defn >1o [n]
+  (fresh [a ad dd]
+    (== (llist a ad dd) n)))
+
+(declare addero)
+
+(defn gen-addero [b n m r]
+  (fresh [a c d e x y z]
+    (== (llist a x) n)
+    (== (llist d y) m) (poso y)
+    (== (llist c z) r) (poso z)
+    (all
+      (full-addero b a d c e)
+      (addero e x y z))))
+
+(defn addero [b n m r]
+  (conde
+    [(== 0 b) (== '() m) (== n r)]
+    [(== 0 b) (== '() n) (== m r) (poso m)]
+    [(== 1 b) (== '() m) (addero 0 n '(1) r)]
+    [(== 1 b) (== '() n) (poso m) (addero 0 '(1) m r)]
+    [(== '(1) n) (== '(1) m) (fresh [a c]
+                               (== (list a c) r)
+                               (full-addero b 1 1 a c))]
+    [(== '(1) n) (gen-addero b n m r)]
+    [(== '(1) m) (>1o n) (>1o r) (addero b '(1) n r)]
+    [(>1o n) (gen-addero b n m r)]))
+
+(defn +o [n m k]
+  (addero 0 n m k))
+
+(defn -o [n m k]
+  (+o m k n))
+
+(defn lengtho [l n]
+  (conde
+    [(emptyo l) (== '() n)]
+    [(fresh [d res]
+       (resto l d)
+       (+o '(1) res n)
+       (lengtho d res))]))
 
 
 

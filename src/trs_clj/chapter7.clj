@@ -7,12 +7,12 @@
 ;;7.A Bit Too Much
 
 ;;5
-(defn bit-xoro [x y r]
-  (conde
-    [(== 0 x) (== 0 y) (== 0 r)]
-    [(== 0 x) (== 1 y) (== 1 r)]
-    [(== 1 x) (== 0 y) (== 1 r)]
-    [(== 1 x) (== 1 y) (== 0 r)]))
+#_(defn bit-xoro [x y r]
+    (conde
+      [(== 0 x) (== 0 y) (== 0 r)]
+      [(== 0 x) (== 1 y) (== 1 r)]
+      [(== 1 x) (== 0 y) (== 1 r)]
+      [(== 1 x) (== 1 y) (== 0 r)]))
 
 ;;6
 (run* [x y]
@@ -27,22 +27,22 @@
   (bit-xoro x y r))
 
 ;;10
-(defn bit-ando [x y r]
-  (conde
-    [(== 0 x) (== 0 y) (== 0 r)]
-    [(== 1 x) (== 0 y) (== 0 r)]
-    [(== 0 x) (== 1 y) (== 0 r)]
-    [(== 1 x) (== 1 y) (== 1 r)]))
+#_(defn bit-ando [x y r]
+    (conde
+      [(== 0 x) (== 0 y) (== 0 r)]
+      [(== 1 x) (== 0 y) (== 0 r)]
+      [(== 0 x) (== 1 y) (== 0 r)]
+      [(== 1 x) (== 1 y) (== 1 r)]))
 
 ;;11
 (run* [x y]
   (bit-ando x y 1))
 
 ;;12
-(defn half-addero [x y r c]
-  (all
-    (bit-xoro x y r)
-    (bit-ando x y c)))
+#_(defn half-addero [x y r c]
+    (all
+      (bit-xoro x y r)
+      (bit-ando x y c)))
 
 (run* [r]
   (half-addero 1 1 r 1))
@@ -52,11 +52,11 @@
   (half-addero x y r c))
 
 ;;15
-(defn full-addero [b x y r c]
-  (fresh [w xy wz]
-    (half-addero x y w xy)
-    (half-addero w b r wz)
-    (bit-xoro xy wz c)))
+#_(defn full-addero [b x y r c]
+    (fresh [w xy wz]
+      (half-addero x y w xy)
+      (half-addero w b r wz)
+      (bit-xoro xy wz c)))
 
 (run* [r c]
   (full-addero 0 1 1 r c))
@@ -69,7 +69,7 @@
 (run* [b x y r c]
   (full-addero b x y r c))
 
-(pprint (run* [b x y r c]
+#_(pprint (run* [b x y r c]
           (full-addero b x y r c)))
 
 ;;42
@@ -96,9 +96,9 @@
     (zero? n) '()))
 
 ;;77
-(defn poso [n]
-  (fresh [a d]
-    (== (llist a d) n)))
+#_(defn poso [n]
+    (fresh [a d]
+      (== (llist a d) n)))
 
 (run* [q]
   (poso '(0 1 1)))
@@ -116,7 +116,7 @@
   (poso r))
 
 ;;83
-(defn >1o [n]
+#_(defn >1o [n]
   (fresh [a ad dd]
     (== (llist a ad dd) n)))
 
@@ -146,9 +146,9 @@
 ;;a,c,d,e - bits
 
 ;;b + n + m = r
-(declare addero)
+#_(declare addero)
 
-(defn gen-addero [b n m r]
+#_(defn gen-addero [b n m r]
   (fresh [a c d e x y z]
     (== (llist a x) n)
     (== (llist d y) m) (poso y)
@@ -157,7 +157,7 @@
       (full-addero b a d c e)
       (addero e x y z))))
 
-(defn addero [b n m r]
+#_(defn addero [b n m r]
   (conde
     [(== 0 b) (== '() m) (== n r)]
     [(== 0 b) (== '() n) (== m r) (poso m)]
@@ -179,7 +179,7 @@
   (addero 0 x y '(1 0 1)))
 
 ;;114
-(defn +o [n m k]
+#_(defn +o [n m k]
   (addero 0 n m k))
 
 ;;115
@@ -187,7 +187,7 @@
   (+o x y '(1 0 1)))
 
 ;;116
-(defn -o [n m k]
+#_(defn -o [n m k]
   (+o m k n))
 
 ;;117
@@ -212,7 +212,7 @@
 (length [])
 (length [0 0 0])
 
-(defn lengtho [l n]
+#_(defn lengtho [l n]
   (conde
     [(emptyo l) (== '() n)]
     [(fresh [d res]
@@ -239,7 +239,7 @@
 ;;125
 ;;Never ends, looking for the 4th value
 #_(run 4 [q]
-  (lengtho q q))
+    (lengtho q q))
 
 
 
