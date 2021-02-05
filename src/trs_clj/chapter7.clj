@@ -146,6 +146,8 @@
 ;;a,c,d,e - bits
 
 ;;b + n + m = r
+(declare addero)
+
 (defn gen-addero [b n m r]
   (fresh [a c d e x y z]
     (== (llist a x) n)
@@ -201,9 +203,43 @@
 (run* [q]
   (-o '(0 1 1) '(0 0 0 1) q))
 
+;;120
+(defn length [l]
+  (cond
+    (empty? l) 0
+    :else (+ 1 (length (rest l)))))
 
+(length [])
+(length [0 0 0])
 
+(defn lengtho [l n]
+  (conde
+    [(emptyo l) (== '() n)]
+    [(fresh [d res]
+       (resto l d)
+       (+o '(1) res n)
+       (lengtho d res))]))
 
+;;121
+(run 1 [n]
+  (lengtho '(jicama rhubarb guava) n))
+
+;;122
+(run* [ls]
+  (lengtho ls '(1 0 1)))
+
+;;123
+(run* [q]
+  (lengtho '(1 0 1) 3))
+
+;;124
+(run 3 [q]
+  (lengtho q q))
+
+;;125
+;;Never ends, looking for the 4th value
+#_(run 4 [q]
+  (lengtho q q))
 
 
 
