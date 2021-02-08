@@ -9,7 +9,7 @@
 
 (defn pairo [p]
   (fresh [a d]
-         (conso a d p)))
+    (conso a d p)))
 
 (defn singleton? [l]
   (cond
@@ -79,12 +79,12 @@
        (rembero2 x d res))]))
 
 #_(defn alwayso-bad []
-  (conde
-    [s#]
-    [(alwayso-bad)]))
+    (conde
+      [s#]
+      [(alwayso-bad)]))
 
 #_(defn nevero-bad []
-  (nevero-bad))
+    (nevero-bad))
 
 (defn alwayso []
   (fn [s]
@@ -129,6 +129,7 @@
   (fresh [a d]
     (== (llist a d) n)))
 
+;;7.83
 (defn >1o [n]
   (fresh [a ad dd]
     (== (llist a ad dd) n)))
@@ -157,12 +158,15 @@
     [(== '(1) m) (>1o n) (>1o r) (addero b '(1) n r)]
     [(>1o n) (gen-addero b n m r)]))
 
+;;7.114
 (defn +o [n m k]
   (addero 0 n m k))
 
+;;7.116
 (defn -o [n m k]
   (+o m k n))
 
+;;7.120
 (defn lengtho [l n]
   (conde
     [(emptyo l) (== '() n)]
@@ -171,8 +175,101 @@
        (+o '(1) res n)
        (lengtho d res))]))
 
+;;8.9
+(defn *o [n m p]
+  (conde
+    [(== '() n) (== '() p)]
+    [(poso n) (== '() m) (== '() p)]
+    [(== '(1) n) (poso m) (== m p)]
+    [(>1o n) (== '(1) m) (== n p)]
+    [(fresh (x z) (== (llist 0 x) n) (poso x) (== (llist 0 z) p) (poso z) (>1o m) (*o x m z))]
+    [(fresh (x y) (== (llist 1 x) n) (poso x) (== (llist 0 y) m) (poso y) (*o m n p))]
+    [(fresh (x y) (== (llist 1 x) n) (poso x) (== (llist 1 y) m) (poso y) (odd-*o x n m p))]))
 
+;;8.24
+(defn bound-*o [q p n m]
+  (conde
+    ((== '() q) (poso p))
+    ((fresh [a0 a1 a2 a3 x y z]
+       (== (llist a0 x) q)
+       (== (llist a1 y) p)
+       (conde
+         [(== '() n) (== (llist a2 z) m) (bound-*o x y z '())]
+         [(== (llist a3 z) n) (bound-*o x y z m)])))))
 
+;;8.17
+(defn odd-*o [x n m p]
+  (fresh (q)
+    (bound-*o q p n m)
+    (*o x m q)
+    (+o (llist 0 q) m p)))
 
+;;8.9
+(defn *o [n m p]
+  (conde
+    [(== '() n) (== '() p)]
+    [(poso n) (== '() m) (== '() p)]
+    [(== '(1) n) (poso m) (== m p)]
+    [(>1o n) (== '(1) m) (== n p)]
+    [(fresh (x z) (== (llist 0 x) n) (poso x) (== (llist 0 z) p) (poso z) (>1o m) (*o x m z))]
+    [(fresh (x y) (== (llist 1 x) n) (poso x) (== (llist 0 y) m) (poso y) (*o m n p))]
+    [(fresh (x y) (== (llist 1 x) n) (poso x) (== (llist 1 y) m) (poso y) (odd-*o x n m p))]))
 
+;;8.28
+;;length?
+(defn =lo [n m]
+  (conde
+    [(== '() n) (== '() m)]
+    [(== '(1) n) (== '(1) m)]
+    [(fresh [a x b y]
+       (== (llist a x) n)
+       (poso x)
+       (== (llist b y) m)
+       (poso y)
+       (=lo x y))]))
+
+;;8.36
+;;n shorter than m
+(defn <lo [n m]
+  (conde
+    [(== '() n) (poso m)]
+    [(== '(1) n) (>1o m)]
+    [(fresh [a x b y]
+       (== (llist a x) n)
+       (poso x)
+       (== (llist b y) m)
+       (poso y)
+       (<lo x y))]))
+
+;;8.40
+(defn <=lo [n m]
+  (conde
+    [(=lo n m)]
+    [(<lo n m)]))
+
+;;8.46
+(defn <o [n m]
+  (conde
+    [(<lo n m)]
+    [(=lo n m)
+     (fresh [x]
+       (poso x)
+       (+o n x m))]))
+
+;;8.46
+(defn <=o [n m]
+  (conde
+    [(== n m)]
+    [(<o n m)]))
+
+;;8.54
+(defn ÷o [n m q r]
+  (conde
+    [(== '() q) (== n r) (<o n m)]
+    [(== '(1) q) (== '() r) (== n m) (<o r m)]
+    [(<o m n) (<o r m)
+     (fresh [mq]
+       (<=lo mq n)
+       (*o m q mq)
+       (+o mq r n))]))
 

@@ -14,6 +14,7 @@ See also implementations in core.logic of TRS 1st edition
 - https://github.com/philoskim/reasoned-schemer-for-clojure
 
 Mini/MicroKanren
+- http://minikanren.org
 - [µKanren: A Minimal Functional Core
   for Relational Programming](http://webyrd.net/scheme-2013/papers/HemannMuKanren2013.pdf)
 - [Relational Programming in miniKanren: Techniques, Applications, and Implementations](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.363.5478&rep=rep1&type=pdf)
@@ -118,3 +119,25 @@ There are also some differences at the language level. They’re easy to find th
 
 Also, see this conversation between Rick and William Byrd
 https://groups.google.com/g/minikanren/c/fMKSBmOm_XM/m/V0K30F8lBwAJ
+
+---
+### MiniKanren vs Prolog
+https://stackoverflow.com/questions/28467011/what-are-the-main-technical-differences-between-prolog-and-minikanren-with-resp
+
+---
+### Predicate Logic Resolution
+
+INSEADO
+- Implications out
+- Negations in
+- Standardize variables
+- Existentials out (∃)
+- Alls out (∀)
+- Distribution
+- Operators out
+
+*example: [8 2 8 2 Clausal Form 9 min](https://www.youtube.com/watch?v=6JmxpTj-f3o&ab_channel=OsirisSalazar)*
+
+---
+### SICP
+https://youtu.be/GReBwkGFZcs?list=PLE18841CABEA24090&t=3264

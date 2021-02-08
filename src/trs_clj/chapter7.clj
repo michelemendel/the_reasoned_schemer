@@ -96,6 +96,7 @@
     (zero? n) '()))
 
 ;;77
+;;positive?
 #_(defn poso [n]
     (fresh [a d]
       (== (llist a d) n)))
