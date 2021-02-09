@@ -176,6 +176,7 @@
        (lengtho d res))]))
 
 ;;8.9
+(declare odd-*o)
 (defn *o [n m p]
   (conde
     [(== '() n) (== '() p)]
@@ -263,7 +264,7 @@
     [(<o n m)]))
 
 ;;8.54
-(defn ÷o [n m q r]
+#_(defn ÷o [n m q r]
   (conde
     [(== '() q) (== n r) (<o n m)]
     [(== '(1) q) (== '() r) (== n m) (<o r m)]
@@ -273,3 +274,127 @@
        (*o m q mq)
        (+o mq r n))]))
 
+;;81
+(defn n-wider-than-mo [n m q r]
+  (fresh [nhigh nlow qhigh qlow]
+    (fresh [mqlow mrqlow rr rhigh]
+      (splito n r nlow nhigh)
+      (splito q r qlow qhigh)
+      (conde
+        ((== '() nhigh)
+         (== '() qhigh)
+         (-o nlow r mqlow)
+         (*o m qlow mqlow))
+        ((poso nhigh)
+         (*o m qlow mqlow)
+         (+o r mqlow mrqlow)
+         (-o mrqlow nlow rr)
+         (splito rr r '() rhigh)
+         (÷o nhigh m qhigh rhigh))))))
+
+(defn ÷o [n m q r]
+  (conde
+    [(== '() q) (== n r) (<o n m)]
+    [(== '(1) q) (=lo n m) (+o r m n) (<o r m)]
+    [(poso q) (<lo m n) (<o r m)
+     (n-wider-than-mo n m q r)]))
+
+
+
+;;8.69
+(defn splito [n r l h]
+  (conde
+    [(== '() n) (== '() h) (== '() l)]
+    [(fresh [b nt]
+       (== (llist 0 b nt) n) (== '() r)
+       (== (llist b nt) h) (== '() l))]
+    [(fresh [nt]
+       (== (llist 1 nt) n) (== '() r)
+       (== nt h) (== '(1) l))]
+    [(fresh [b nt a rt]
+       (== (llist 0 b nt) n)
+       (== (llist a rt) r) (== '() l)
+       (splito (llist b nt) rt '() h))]
+    [(fresh [nt a rt]
+       (== (llist 1 nt) n)
+       (== (llist a rt) r) (== '(1) l)
+       (splito nt rt '() h))]
+    [(fresh [b nt a rt l lt]
+       (== (llist b nt) n)
+       (== (llist a rt) r)
+       (== (llist b lt) l)
+       (poso lt)
+       (splito nt rt lt h))]))
+
+;;8.84
+(defn exp2o [n b q]
+  (conde
+    [(== '(1) n) (== '() q)]
+    [(>1o n) (== '(1) q)
+     (fresh [s]
+       (splito n b s '(1)))]
+    [(fresh [q1 b2]
+       (== (llist 0 q1) q)
+       (poso q1)
+       (<lo b n)
+       (appendo b (llist 1 b) b2)
+       (exp2o n b2 q1))]
+    [(fresh [q1 nhigh b2 s]
+       (== (llist 1 q1) q)
+       (poso q1)
+       (poso nhigh)
+       (splito n b s nhigh)
+       (appendo b (llist 1 b) b2)
+       (exp2o nhigh b2 q1))]))
+
+(defn repeated-mulo [n q nq]
+  (conde
+    [(poso n) (== '() q) (== '(1) nq)]
+    [(== '(1) q) (== n nq)]
+    [(>1o q)
+     (fresh [q1 nq1]
+       (+o q1 '(1) q)
+       (repeated-mulo n q1 nq1)
+       (*o nq1 n nq))]))
+
+(defn base-three-or-moreo [n b q r]
+  (fresh [bw1 bw nw nw1 qlow1 qlow s]
+    (exp2o b '() bw1)
+    (+o bw1 '(1) bw)
+    (<lo q n)
+    (fresh [q1 bwq1]
+      (+o q '(1) q1)
+      (*o bw q1 bwq1)
+      (<o nw1 bwq1))
+    (exp2o n '() nw1)
+    (+o nw1 '(1) nw)
+    (÷o nw bw qlow1 s)
+    (+o qlow '(1) qlow1)
+    (<=lo qlow q)
+    (fresh [bqlow qhigh s qdhigh qd]
+      (repeated-mulo b qlow bqlow)
+      (÷o nw bw1 qhigh s)
+      (+o qlow qdhigh qhigh)
+      (+o qlow qd q)
+      (<=o qd qdhigh)
+      (fresh [bqd bq1 bq]
+        (repeated-mulo b qd bqd)
+        (*o bqlow bqd bq)
+        (*o b bq bq1)
+        (+o bq r n)
+        (<o n bq1)))))
+
+(defn logo [n b q r]
+  (conde
+    [(== '() q) (<=o n b) (+o r '(1) n)]
+    [(== '(1) q) (>1o b) (=lo n b) (+o r b n)]
+    [(== '(1) b) (poso q) (+o r '(1) n)]
+    [(== '() b) (poso q) (== r n)]
+    [(== '(0 1) b)
+     (fresh [a ad dd]
+       (poso dd)
+       (== (llist a ad dd) n)
+       (exp2o n '() q)
+       (fresh [s]
+         (splito n dd r s)))]
+    ((<=o '(1 1) b) (<lo b n) (base-three-or-moreo n b q r))))

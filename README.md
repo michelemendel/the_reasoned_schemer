@@ -102,6 +102,8 @@ A list is proper if it is the empty list or if it is a pair whose cdr is proper.
 - 4.39 - Different result than TRS
 - 4.53 - Different result than TRS
 - 5.26-28,48,56,61 - Using core.util/rembero gives very different results. I have to read this chapter again.
+- 8.75-77 - Different result than TRS
+- 8.91-92,94 - Different result than TRS
 
 ---
 ### A note about the difference between the first and second edition of TRS, and it's relation to core.logic
