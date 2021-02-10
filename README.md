@@ -39,12 +39,25 @@ Any conde line that has #u as a top-level goal cannot contribute values.
 ### The Law of #s 
 Any top-level #s can be removed from a conde line.
 
-### The First Commandment 
-Within each sequence of goals, move non-recursive goals before recursive goals.  
-This is also mentioned by William Byrd in the video [miniKanren Philosophy - William Byrd & Daniel Friedman](https://www.youtube.com/watch?v=fHK-uS-Iedc&t=1069s).
 
 ### The Law of Swapping conde Lines 
 Swapping two conde lines does not affect the values contributed by conde.
+
+### The Law of conda
+The first conda line whose question succeeds is the only line that can contribute values.
+
+### The Law of condu
+condu behaves like conda, except that a successful question succeeds only once.
+
+### The First Commandment
+Within each sequence of goals, move non-recursive goals before recursive goals.  
+This is also mentioned by William Byrd in the video [miniKanren Philosophy - William Byrd & Daniel Friedman](https://www.youtube.com/watch?v=fHK-uS-Iedc&t=1069s).
+
+### The Second Commandment (Initial)
+If prior to determining the question of a conda line a variable is fresh, it must remain fresh in that line’s question.
+
+### The Second Commandment (Final) 
+If prior to determining the question of a conda or condu line a variable is fresh, it must remain fresh in that line’s question.
 
 
 ---
@@ -104,6 +117,7 @@ A list is proper if it is the empty list or if it is a pair whose cdr is proper.
 - 5.26-28,48,56,61 - Using core.util/rembero gives very different results. I have to read this chapter again.
 - 8.75-77 - Different result than TRS
 - 8.91-92,94 - Different result than TRS
+- 9.56 - Different result than TRS
 
 ---
 ### A note about the difference between the first and second edition of TRS, and it's relation to core.logic

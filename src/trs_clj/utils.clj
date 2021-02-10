@@ -274,33 +274,6 @@
        (*o m q mq)
        (+o mq r n))]))
 
-;;81
-(defn n-wider-than-mo [n m q r]
-  (fresh [nhigh nlow qhigh qlow]
-    (fresh [mqlow mrqlow rr rhigh]
-      (splito n r nlow nhigh)
-      (splito q r qlow qhigh)
-      (conde
-        ((== '() nhigh)
-         (== '() qhigh)
-         (-o nlow r mqlow)
-         (*o m qlow mqlow))
-        ((poso nhigh)
-         (*o m qlow mqlow)
-         (+o r mqlow mrqlow)
-         (-o mrqlow nlow rr)
-         (splito rr r '() rhigh)
-         (÷o nhigh m qhigh rhigh))))))
-
-(defn ÷o [n m q r]
-  (conde
-    [(== '() q) (== n r) (<o n m)]
-    [(== '(1) q) (=lo n m) (+o r m n) (<o r m)]
-    [(poso q) (<lo m n) (<o r m)
-     (n-wider-than-mo n m q r)]))
-
-
-
 ;;8.69
 (defn splito [n r l h]
   (conde
@@ -325,6 +298,34 @@
        (== (llist b lt) l)
        (poso lt)
        (splito nt rt lt h))]))
+
+;;81
+(declare ÷o)
+
+(defn n-wider-than-mo [n m q r]
+  (fresh [nhigh nlow qhigh qlow]
+    (fresh [mqlow mrqlow rr rhigh]
+      (splito n r nlow nhigh)
+      (splito q r qlow qhigh)
+      (conde
+        ((== '() nhigh)
+         (== '() qhigh)
+         (-o nlow r mqlow)
+         (*o m qlow mqlow))
+        ((poso nhigh)
+         (*o m qlow mqlow)
+         (+o r mqlow mrqlow)
+         (-o mrqlow nlow rr)
+         (splito rr r '() rhigh)
+         (÷o nhigh m qhigh rhigh))))))
+
+(defn ÷o [n m q r]
+  (conde
+    [(== '() q) (== n r) (<o n m)]
+    [(== '(1) q) (=lo n m) (+o r m n) (<o r m)]
+    [(poso q) (<lo m n) (<o r m)
+     (n-wider-than-mo n m q r)]))
+
 
 ;;8.84
 (defn exp2o [n b q]
